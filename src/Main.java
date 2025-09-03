@@ -13,6 +13,12 @@ public class Main {
         printVariables();
         printHelloWorld();
         linearSearch();
+        checkTemperature();
+    }
+    public static void checkTemperature() {
+        int temperature = -1;
+        String result = (temperature > 0) ? "плюс" : "мінус";
+        System.out.println("Температура: " + result);
     }
 public static void linearSearch() {
     int[] numbers = {10, 20, 30, 40, 50};
