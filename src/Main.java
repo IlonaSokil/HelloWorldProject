@@ -7,7 +7,6 @@ public class Main {
     static double height = 1.68;
     static boolean isQA = true;
 
-
     public static void main(String[] args) {
         securityCheckBuyAge();
         actionWithDifferentDayOfWeek();
@@ -24,6 +23,7 @@ public class Main {
         divideNumbers(5, 0);
         checkLoginTest();
     }
+
     public static void checkLoginTest() {
         String expected = "Login successful";
         String actual = "Login successful";
@@ -34,7 +34,6 @@ public class Main {
             System.out.println("Тест не пройдено");
         }
     }
-
 
     public static void divideNumbers(int a, int b) {
         try {
