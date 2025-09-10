@@ -1,6 +1,8 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 import java.util.ArrayList;
+
 public class Main {
     static String name = "Ilona";
     static int age = 23;
@@ -116,7 +118,7 @@ public class Main {
     }
 
     public static void Numbers1to5() {
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i < 5; i++) {
             System.out.println(i);
         }
     }
