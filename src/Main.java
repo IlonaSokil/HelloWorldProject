@@ -24,6 +24,30 @@ public class Main {
         divideNumbers(10, 2);
         divideNumbers(5, 0);
         checkLoginTest();
+        Product.demo();
+
+        User admin = new Admin();
+        User customer = new Customer();
+
+        User[] users = {admin, customer};
+
+        for (User u : users) {
+            String role = u.getRole();
+            System.out.println("Роль: " + role);
+
+            if ("Admin".equals(role)) {
+                System.out.println("Доступ: керування товарами та користувачами");
+            } else if ("Customer".equals(role)) {
+                System.out.println("Доступ: перегляд і покупка товарів");
+            } else {
+                System.out.println("Доступ: невідома роль");
+            }
+        }
+        DiscountedProduct discountedPhone = new DiscountedProduct("Телефон", 10699.99, true, 50.0);
+
+        System.out.println("\nТовар зі знижкою:");
+        discountedPhone.printProductInfo();
+        System.out.println("Ціна зі знижкою: "+discountedPhone.priceWithDiscount()+" грн");
     }
 
     public static void checkLoginTest() {
@@ -75,7 +99,7 @@ public class Main {
     }
 
     public static void userCalculator() {
-        int result = Calculator.add(5, 7);
+        int result = Calculator.add(16, 4);
         System.out.println("Результат: " + result);
     }
 
