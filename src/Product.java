@@ -10,6 +10,12 @@ public class Product {
         this.available = available;
     }
 
+    public void validatePrice() throws InvalidPriceException {
+        if (price <= 0) {
+            throw new InvalidPriceException("Ціна продукту '" + name + "' некоректна: " + price);
+        }
+    }
+
     public String getName() { return name; }
     public double getPrice() { return price; }
     public boolean isAvailable() { return available; }

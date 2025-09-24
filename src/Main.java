@@ -2,6 +2,9 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     static String name = "Ilona";
@@ -25,6 +28,8 @@ public class Main {
         divideNumbers(5, 0);
         checkLoginTest();
         Product.demo();
+        safeDivide(18, 2);
+        safeDivide(7, 0);
 
         User admin = new Admin();
         User customer = new Customer();
@@ -43,11 +48,81 @@ public class Main {
                 System.out.println("Доступ: невідома роль");
             }
         }
+
+        Product p1 = new Product("Ноутбук", 32000.50, true);
+        Product p2 = new Product("Смартфон", -5000.00, true); // спеціально некоректна ціна
+
+        try {
+            p1.validatePrice();
+            System.out.println("Перевірка пройдена: ціна валідна");
+        } catch (InvalidPriceException e) {
+            System.out.println("Помилка: " + e.getMessage());
+        }
+
+        try {
+            p2.validatePrice(); // тут буде виняток
+            System.out.println("Перевірка пройдена: ціна валідна");
+        } catch (InvalidPriceException e) {
+            System.out.println("Помилка: " + e.getMessage());
+        }
+
+
+        HashMap<String, Double> products = new HashMap<>();
+
+        products.put("Ноутбук", 32000.50);
+        products.put("Смартфон", 18000.00);
+        products.put("Навушники", 2500.99);
+
+        System.out.println("Список продуктів і цін:");
+        for (Map.Entry<String, Double> entry : products.entrySet()) {
+            System.out.println(entry.getKey() + " → " + entry.getValue() + " грн");
+        }
+
         DiscountedProduct discountedPhone = new DiscountedProduct("Телефон", 10699.99, true, 50.0);
 
         System.out.println("\nТовар зі знижкою:");
         discountedPhone.printProductInfo();
-        System.out.println("Ціна зі знижкою: "+discountedPhone.priceWithDiscount()+" грн");
+        System.out.println("Ціна зі знижкою: " + discountedPhone.priceWithDiscount() + " грн");
+
+
+        HashSet<String> categories = new HashSet<>();
+
+        categories.add("Електроніка");
+        categories.add("Одяг");
+        categories.add("Побутова техніка");
+
+        System.out.println("Список категорій:");
+        for (String category : categories) {
+            System.out.println(category);
+        }
+
+        String searchCategory = "Одяг";
+        if (categories.contains(searchCategory)) {
+            System.out.println("Категорія \"" + searchCategory + "\" є в наборі.");
+        } else {
+            System.out.println("Категорії \"" + searchCategory + "\" немає в наборі.");
+        }
+
+        ArrayList<Product> productList = new ArrayList<>();
+
+        productList.add(new Product("Ноутбук", 32000.50, true));
+        productList.add(new Product("Смартфон", 18000.00, true));
+        productList.add(new Product("Навушники", 2500.99, false));
+
+        for (Product product : productList) {
+            product.printProductInfo();
+        }
+    }
+
+    public static void safeDivide(int a, int b) {
+        try {
+            int result = a / b;
+            System.out.println("Результат: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Помилка: ділення на нуль неможливе!");
+        } finally {
+            System.out.println("Операція завершена");
+        }
     }
 
     public static void checkLoginTest() {
