@@ -50,7 +50,7 @@ public class Main {
         }
 
         Product p1 = new Product("Ноутбук", 32000.50, true);
-        Product p2 = new Product("Смартфон", -5000.00, true); // спеціально некоректна ціна
+        Product p2 = new Product("Смартфон", -5000.00, true);
 
         try {
             p1.validatePrice();
