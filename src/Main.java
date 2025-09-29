@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Map;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 
 public class Main {
     static String name = "Ilona";
@@ -48,6 +51,11 @@ public class Main {
                 System.out.println("Доступ: невідома роль");
             }
         }
+
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.google.com");
+        System.out.println("Title: " + driver.getTitle());
+        driver.quit();
 
         Product p1 = new Product("Ноутбук", 32000.50, true);
         Product p2 = new Product("Смартфон", -5000.00, true);
@@ -179,7 +187,7 @@ public class Main {
     }
 
     public static void checkTemperature() {
-        int temperature = -1;
+        int temperature = 8;
         String result = (temperature > 0) ? "плюс" : "мінус";
         System.out.println("Температура: " + result);
     }
@@ -217,7 +225,7 @@ public class Main {
     }
 
     public static void Numbers1to5() {
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             System.out.println(i);
         }
     }
