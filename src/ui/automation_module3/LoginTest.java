@@ -1,3 +1,7 @@
+package ui.automation_module3;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -24,6 +28,29 @@ public class LoginTest {
         System.out.println("Заголовок сторінки: " + title);
 
         Assert.assertTrue(title.contains("Swag Labs"));
+    }
+
+    @Test
+    public void checkLocators() {
+        checkElement(By.id("user-name"), "ID: user-name");
+
+        checkElement(By.className("submit-button"), "ClassName: submit-button");
+
+        checkElement(By.xpath("//input[@id='password']"), "XPath: //input[@id='password']");
+
+        checkElement(By.cssSelector(".login_logo"), "CSS Selector: .login_logo");
+    }
+
+    private void checkElement(By locator, String description) {
+        try {
+            WebElement element = driver.findElement(locator);
+            if (element.isDisplayed()) {
+                System.out.println("Елемент знайдено → " + description);
+            }
+        } catch (Exception e) {
+            System.out.println("Елемент НЕ знайдено → " + description);
+            Assert.fail("Елемент не знайдено: " + description);
+        }
     }
 
     @AfterClass

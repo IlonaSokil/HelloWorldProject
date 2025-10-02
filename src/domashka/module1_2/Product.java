@@ -1,3 +1,5 @@
+package domashka.module1_2;
+
 public class Product {
 
     private String name;

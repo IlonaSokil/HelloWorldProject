@@ -1,4 +1,4 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+package domashka.module1_2;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 import java.util.ArrayList;
@@ -43,9 +43,9 @@ public class Main {
             String role = u.getRole();
             System.out.println("Роль: " + role);
 
-            if ("Admin".equals(role)) {
+            if ("domashka.module1_2.Admin".equals(role)) {
                 System.out.println("Доступ: керування товарами та користувачами");
-            } else if ("Customer".equals(role)) {
+            } else if ("domashka.module1_2.Customer".equals(role)) {
                 System.out.println("Доступ: перегляд і покупка товарів");
             } else {
                 System.out.println("Доступ: невідома роль");

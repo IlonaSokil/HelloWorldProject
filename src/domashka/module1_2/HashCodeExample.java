@@ -1,3 +1,5 @@
+package domashka.module1_2;
+
 public class HashCodeExample {
     public static void main(String[] args) {
         String name = "Ilona";
