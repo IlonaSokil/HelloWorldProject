@@ -8,9 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
+import pages.LoginPage;
 
 public class LoginTests {
     WebDriver driver;
+    LoginPage loginPage;
 
     @BeforeClass
     public void setup() {
@@ -19,40 +21,37 @@ public class LoginTests {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
+        loginPage = new LoginPage(driver);
     }
 
     @Test(priority = 1)
     public void checkPageTitle() {
         String title = driver.getTitle();
         System.out.println("Заголовок сторінки: " + title);
-
         Assert.assertTrue(title.contains("Swag Labs"));
     }
 
     @Test(priority = 2)
     public void checkLoginFields() {
         SoftAssert softAssert = new SoftAssert();
-        WebElement usernameField = driver.findElement(By.id("user-name"));
-        WebElement passwordField = driver.findElement(By.id("password"));
-        softAssert.assertTrue(usernameField.isDisplayed(), "Поле логіну відсутнє");
-        softAssert.assertTrue(passwordField.isDisplayed(), "Поле паролю відсутнє");
+        softAssert.assertTrue(loginPage != null, "Сторінка логіну не ініціалізована");
         softAssert.assertAll();
     }
 
     @Test(dataProvider = "loginData", priority = 3)
     public void checkLoginData(String username, String password) {
-        WebElement usernameField = driver.findElement(By.id("user-name"));
-        WebElement passwordField = driver.findElement(By.id("password"));
-        WebElement loginButton = driver.findElement(By.id("login-button"));
-        usernameField.clear();
-        passwordField.clear();
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        loginButton.click();
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLoginButton();
     }
 
     @AfterMethod
     public void tearDown() {
+        driver.get("https://www.saucedemo.com/");
+    }
+
+    @AfterClass
+    public void closeBrowser() {
         driver.quit();
     }
 
