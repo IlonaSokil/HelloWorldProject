@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import practice.CustomClickWait;
 
 public class LoginPage {
     WebDriver driver;
+    CustomClickWait customClick;
 
     @FindBy(id = "user-name")
     WebElement usernameField;
@@ -19,6 +21,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        customClick = new CustomClickWait(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -31,6 +34,6 @@ public class LoginPage {
     }
 
     public void clickLoginButton() {
-        loginButton.click();
+        customClick.clickElement(loginButton);
     }
 }

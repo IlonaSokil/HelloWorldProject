@@ -1,9 +1,7 @@
 package ui.automation_module3;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -13,6 +11,7 @@ import pages.LoginPage;
 public class LoginTests {
     WebDriver driver;
     LoginPage loginPage;
+    SoftAssert softAssert = new SoftAssert();
 
     @BeforeClass
     public void setup() {
@@ -33,7 +32,6 @@ public class LoginTests {
 
     @Test(priority = 2)
     public void checkLoginFields() {
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(loginPage != null, "Сторінка логіну не ініціалізована");
         softAssert.assertAll();
     }
