@@ -26,15 +26,15 @@ public class ApiTests {
     public void createPetTest() {
         RestAssured.baseURI = "https://petstore.swagger.io/v2";
 
-        Pet pet = new Pet();
-        pet.id = 23456;
-        pet.name = "Fenixcat";
-        pet.status = "available";
+        PetProduct petProduct = new PetProduct();
+        petProduct.id = 23456;
+        petProduct.name = "Fenixcat";
+        petProduct.status = "available";
 
         Response response = RestAssured
                 .given()
                 .header("Content-Type", "application/json")
-                .body(pet)
+                .body(petProduct)
                 .when()
                 .post("/pet")
                 .then()
@@ -43,7 +43,7 @@ public class ApiTests {
 
         Assert.assertEquals(response.getStatusCode(), 200);
 
-        Pet responsePet = response.as(Pet.class);
-        Assert.assertEquals(responsePet.name, pet.name);
+        PetProduct responsePet = response.as(PetProduct.class);
+        Assert.assertEquals(responsePet.name, petProduct.name);
     }
 }
